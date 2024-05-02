@@ -93,13 +93,12 @@ namespace ProjServiSysApi.Controller
             }
         }
 
-
-        [HttpPatch("{id}")]
-        public async Task<ActionResult<OrdemServicoDto>> PutOrdemServico(int id, OrdemServicoDto model)
+        [HttpPatch("MudarStatus/{id}")]
+        public async Task<ActionResult<OrdemServicoDto>> PatchMudarStatusOrdemServico(int id)
         {
             try
             {
-                var ordemServico = await _osIService.UpdateOrdemServico(User.GetUserId(), id, model);
+                var ordemServico = await _osIService.UpdateAprovadoOrdemServico(User.GetUserId(),id);
                 if (ordemServico == null) return NoContent();
 
                 return Ok(ordemServico);
@@ -109,7 +108,6 @@ namespace ProjServiSysApi.Controller
                 return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar alterar ordem. Erro: {ex.Message}");
             }
         }
-
 
         [HttpPatch("Aprovado/{id}")]
         public async Task<ActionResult<OrdemServicoDto>> PatchAprovadoOrdemServico(int id)

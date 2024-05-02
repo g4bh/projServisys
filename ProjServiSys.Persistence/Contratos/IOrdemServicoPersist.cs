@@ -11,5 +11,6 @@ namespace ProjServiSys.Persistence.Contratos
         Task<OrdemServico[]> GetAllOrdensServicoAsync(int userId, bool includeOrdemEquipamento);
         Task<OrdemServico> GetOrdemServicoByIdAsync(int userId, int OrdemServicoId, bool includeOrdemEquipamento);
         Task<OrdemServico[]> GetAllOrdensServicoByUsuarioAsync(int userId, bool includeOrdemEquipamento);
+
     }
 }

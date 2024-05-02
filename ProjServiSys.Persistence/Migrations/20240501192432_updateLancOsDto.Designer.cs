@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjServiSys.Persistence;
 
@@ -11,9 +12,11 @@ using ProjServiSys.Persistence;
 namespace ProjServiSys.Persistence.Migrations
 {
     [DbContext(typeof(DbServiSysApiContext))]
-    partial class DbServiSysApiContextModelSnapshot : ModelSnapshot
+    [Migration("20240501192432_updateLancOsDto")]
+    partial class updateLancOsDto
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -205,7 +208,7 @@ namespace ProjServiSys.Persistence.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DataCriacaoUser")
+                    b.Property<DateTime>("DataAlteracaoInatividade")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
@@ -213,6 +216,9 @@ namespace ProjServiSys.Persistence.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("InativaUsuario")
                         .HasColumnType("bit");
 
                     b.Property<bool>("LockoutEnabled")
@@ -244,9 +250,6 @@ namespace ProjServiSys.Persistence.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TipoUsuario")
-                        .HasColumnType("int");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");

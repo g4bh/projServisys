@@ -73,6 +73,31 @@ namespace ProjServiSys.Application
             }
         }
 
+        public async Task<OrdemServicoDto> UpdateMudarStatusOrdemServico(int userId, int osId, EstadoOrdemServicoEnum novoStatus)
+        {
+            try
+            {
+                var ordemServico = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, osId, false);
+                if (ordemServico == null) return null;
+
+                ordemServico.EstadoOrdemServico = novoStatus;
+
+                _geralPersist.Update<OrdemServico>(ordemServico);
+                if (await _geralPersist.SaveChangesAsync())
+                {
+                    var ordemRetorno = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, ordemServico.Id, false);
+                    return _mapper.Map<OrdemServicoDto>(ordemRetorno);
+                }
+
+                return null;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public async Task<OrdemServicoDto> UpdateAprovadoOrdemServico(int userId, int osId)
         {
             try
@@ -122,7 +147,7 @@ namespace ProjServiSys.Application
                 throw new Exception(ex.Message);
             }
         }
-        
+
 
         public async Task<OrdemServicoDto[]> GetAllOrdensServicoAsync(int userId, bool includeOrdemEquipamento = false)
         {

@@ -2,9 +2,9 @@
 {
     public enum TipoUsuarioEnum
     {
-        SemPermissao,
+        SemPermissao = 1,
         Solicitante,
         Coordenador_TI,
-        Tecnico_Informatica
+        Tecnico
     }
 }

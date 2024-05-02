@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProjServiSys.Persistence;
 
@@ -11,9 +12,11 @@ using ProjServiSys.Persistence;
 namespace ProjServiSys.Persistence.Migrations
 {
     [DbContext(typeof(DbServiSysApiContext))]
-    partial class DbServiSysApiContextModelSnapshot : ModelSnapshot
+    [Migration("20240502011651_updateTeste")]
+    partial class updateTeste
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

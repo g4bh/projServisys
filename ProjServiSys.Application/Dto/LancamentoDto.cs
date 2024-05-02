@@ -11,7 +11,6 @@ namespace ProjServiSys.Application.Dto
     {
         public int Id { get; set; }
         public string DataLancamento { get; set; } = DateTime.Now.ToLocalTime().ToString("");
-        public string? DescricaoProblema { get; set; }
         public EstadoOrdemServicoEnum EstadoOrdemServico { get; set; }
         public int? OrdemServicoId { get; set; }
     }

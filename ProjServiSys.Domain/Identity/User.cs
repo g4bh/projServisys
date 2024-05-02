@@ -14,10 +14,9 @@ namespace ProjServiSys.Domain.Identity
     {
         public string PrimeiroNome { get; set; }
         public string UltimoNome { get; set; }
-        public bool InativaUsuario { get; set; } = false;
-        public DateTime DataAlteracaoInatividade { get; set; } = DateTime.Now;
+        public DateTime DataCriacaoUser { get; set; } = DateTime.Now;
         public CargoEnum Cargo { get; set; }
-
+        public TipoUsuarioEnum TipoUsuario { get; set; }
         public IEnumerable<UserRole> UserRoles { get; set; }
     }
 }

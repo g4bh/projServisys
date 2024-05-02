@@ -18,6 +18,8 @@ namespace ProjServiSys.Domain
         public string LocalEquipamento { get; set; }
         public string TipoEquipamento { get; set; }
         public string SerialEquipamento { get; set; }
+
+        [EnumDataType(typeof(EstadoOrdemServicoEnum))]
         public EstadoOrdemServicoEnum EstadoOrdemServico { get; set; }
         public int UserId { get; set; }
         public User User { get; set; } 
