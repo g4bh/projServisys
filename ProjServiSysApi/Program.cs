@@ -12,6 +12,10 @@ using Microsoft.OpenApi.Models;
 using ProjServiSys.Application.Contratos;
 using ProjServiSys.Persistence.Contratos;
 using System.Text.Json.Serialization;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Microsoft.OpenApi.Any;
+using System.Text.RegularExpressions;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,6 +48,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
         ValidateIssuer = false,
         ValidateAudience = false
     };
+});
+
+
+builder.Services.AddAuthorization(options =>{
+    options.AddPolicy("SolicitantePolicy", policy => policy.RequireRole("Solicitante"));
+    options.AddPolicy("CoordenadorTIPolicy", policy => policy.RequireRole("Coordenador_TI"));
+    options.AddPolicy("tecnicoPolicy", policy => policy.RequireRole("Tecnico"));
+    options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Administrador"));
 });
 
 
@@ -98,6 +110,8 @@ builder.Services.AddSwaggerGen( options =>
             new List<string>()
         }
     });
+
+    options.SchemaFilter<EnumSchemaFilter>();
 });
 
 builder.Services.AddDbContext<DbServiSysApiContext>(options =>
@@ -121,3 +135,20 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+
+public class EnumSchemaFilter : ISchemaFilter
+{
+    public void Apply(OpenApiSchema schema, SchemaFilterContext context)
+    {
+        if (context.Type.IsEnum)
+        {
+            schema.Type = "string";
+            schema.Enum = Enum.GetNames(context.Type)
+                .Select(name => new OpenApiString(name))
+                .Cast<IOpenApiAny>()
+                .ToList();
+        }
+    }
+
+}

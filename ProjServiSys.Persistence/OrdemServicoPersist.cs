@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ProjServiSys.Persistence.Contratos;
 using ProjServiSys.Domain;
+using ProjServiSys.Domain.Enum;
 
 namespace ProjServiSys.Persistence
 {
@@ -62,5 +63,6 @@ namespace ProjServiSys.Persistence
 
             return await query.FirstOrDefaultAsync();
         }
+
     }
 }

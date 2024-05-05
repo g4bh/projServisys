@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProjServiSys.Application.Contratos;
 using ProjServiSys.Application.Dto;
+using ProjServiSys.Domain.Enum;
 using ProjServiSysApi.Extensions;
 
 namespace ProjServiSysApi.Controller
@@ -93,12 +94,12 @@ namespace ProjServiSysApi.Controller
             }
         }
 
-        [HttpPatch("MudarStatus/{id}")]
-        public async Task<ActionResult<OrdemServicoDto>> PatchMudarStatusOrdemServico(int id)
+        [HttpPatch("MudarStatus/{OrdemServicoId}")]
+        public async Task<ActionResult<OrdemServicoDto>> PatchMudarStatusOrdemServico(int OrdemServicoId, EstadoOrdemServicoEnum novoStatus)
         {
             try
             {
-                var ordemServico = await _osIService.UpdateAprovadoOrdemServico(User.GetUserId(),id);
+                var ordemServico = await _osIService.UpdateMudarStatusOrdemServico(User.GetUserId(), OrdemServicoId, novoStatus);
                 if (ordemServico == null) return NoContent();
 
                 return Ok(ordemServico);
