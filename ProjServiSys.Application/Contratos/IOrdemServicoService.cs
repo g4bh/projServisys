@@ -17,8 +17,8 @@ namespace ProjServiSys.Application.Contratos
 
 
 
-        Task<OrdemServicoDto[]> GetAllOrdensServicoAsync(int userId, bool includeOrdemEquipamento);
-        Task<OrdemServicoDto> GetOrdemServicoByIdAsync(int userId, int OrdemServicoId, bool includeOrdemEquipamento);
-        Task<OrdemServicoDto[]> GetAllOrdensServicoByUsuarioAsync(int userId, bool includeOrdemEquipamento);
+        Task<OrdemServicoDto[]> GetAllOrdensServicoAsync();
+        Task<OrdemServicoDto> GetOrdemServicoByIdAsync(int userId, int OrdemServicoId);
+        Task<OrdemServicoDto[]> GetAllOrdensServicoByUsuarioAsync(int userId);
     }
 }

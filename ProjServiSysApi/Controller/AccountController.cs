@@ -44,7 +44,7 @@ namespace ProjServiSysApi.Controller
         }
 
         [HttpPost("RegisterUser")]
-        [AllowAnonymous]
+        [Authorize(Policy = "AdminPolicy")]
         public async Task<IActionResult> RegisterUser(UserDto userDto)
         {
             try

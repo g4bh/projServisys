@@ -31,7 +31,7 @@ namespace ProjServiSysApi.Controller
         {
             try
             {
-                var ordensServico = await _osIService.GetAllOrdensServicoAsync(User.GetUserId(), true);
+                var ordensServico = await _osIService.GetAllOrdensServicoAsync();
                 if (ordensServico == null) return NoContent();
 
                 return Ok(ordensServico);
@@ -48,7 +48,7 @@ namespace ProjServiSysApi.Controller
         {
             try
             {
-                var ordemServico = await _osIService.GetOrdemServicoByIdAsync(User.GetUserId(), id, true);
+                var ordemServico = await _osIService.GetOrdemServicoByIdAsync(User.GetUserId(), id);
                 if (ordemServico == null) return NoContent();
 
                 return Ok(ordemServico);
@@ -65,7 +65,7 @@ namespace ProjServiSysApi.Controller
         {
             try
             {
-                var ordemServico = await _osIService.GetAllOrdensServicoByUsuarioAsync(User.GetUserId(), true);
+                var ordemServico = await _osIService.GetAllOrdensServicoByUsuarioAsync(User.GetUserId());
                 if (ordemServico == null) return NoContent();
 
                 return Ok(ordemServico);
