@@ -13,6 +13,7 @@ namespace ProjServiSys.Application.Dto
         public string UltimoNome { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
+        public string TipoUsuario { get; set; }
         public string Cargo { get; set; }
         public string Token { get; set; }
     }

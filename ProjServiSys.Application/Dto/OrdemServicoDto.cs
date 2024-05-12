@@ -15,13 +15,13 @@ namespace ProjServiSys.Application.Dto
         public int Id { get; set; }
         public string DataOrdemServico { get; set; } = DateTime.Now.ToLocalTime().ToString("");
         public string DescricaoProblema { get; set; }
-        public bool Aprovada { get; set; }
 
         [Display(Name = "local do equipamento")]
         [Required(ErrorMessage = "O {0} é obrigatório!"), StringLength(60, MinimumLength = 5)]
         public string LocalEquipamento { get; set; }
         public string TipoEquipamento { get; set; }
         public string SerialEquipamento { get; set; }
+        public string PosicaoEquipamento { get; set; }
         [JsonIgnore]
         public int UserId { get; set; }
         public EstadoOrdemServicoEnum EstadoOrdemServico { get; set; }

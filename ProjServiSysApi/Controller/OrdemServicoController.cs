@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ProjServiSys.Application.Contratos;
 using ProjServiSys.Application.Dto;
+using ProjServiSys.Domain.Enum;
 using ProjServiSysApi.Extensions;
 
 namespace ProjServiSysApi.Controller
@@ -26,11 +27,12 @@ namespace ProjServiSysApi.Controller
 
         //[Authorize(Roles = "Admin")]
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<OrdemServicoDto[]>> GetOrdemServico()
         {
             try
             {
-                var ordensServico = await _osIService.GetAllOrdensServicoAsync(User.GetUserId(), true);
+                var ordensServico = await _osIService.GetAllOrdensServicoAsync();
                 if (ordensServico == null) return NoContent();
 
                 return Ok(ordensServico);
@@ -43,11 +45,12 @@ namespace ProjServiSysApi.Controller
 
        
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<OrdemServicoDto>> GetOrdemServicoById(int id)
         {
             try
             {
-                var ordemServico = await _osIService.GetOrdemServicoByIdAsync(User.GetUserId(), id, true);
+                var ordemServico = await _osIService.GetOrdemServicoByIdAsync(User.GetUserId(), id);
                 if (ordemServico == null) return NoContent();
 
                 return Ok(ordemServico);
@@ -60,11 +63,12 @@ namespace ProjServiSysApi.Controller
         }
 
         [HttpGet("usuario/{idUsuario}")]
+        [AllowAnonymous]
         public async Task<ActionResult<OrdemServicoDto>> GetOrdemServicoByUsuario()
         {
             try
             {
-                var ordemServico = await _osIService.GetAllOrdensServicoByUsuarioAsync(User.GetUserId(), true);
+                var ordemServico = await _osIService.GetAllOrdensServicoByUsuarioAsync(User.GetUserId());
                 if (ordemServico == null) return NoContent();
 
                 return Ok(ordemServico);
@@ -78,6 +82,7 @@ namespace ProjServiSysApi.Controller
 
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult<OrdemServicoDto>> PostOrdemServico(OrdemServicoDto model)
         {
             try
@@ -93,13 +98,12 @@ namespace ProjServiSysApi.Controller
             }
         }
 
-
-        [HttpPatch("{id}")]
-        public async Task<ActionResult<OrdemServicoDto>> PutOrdemServico(int id, OrdemServicoDto model)
+        [HttpPatch("MudarStatus/{OrdemServicoId}")]
+        public async Task<ActionResult<OrdemServicoDto>> PatchMudarStatusOrdemServico(int OrdemServicoId, EstadoOrdemServicoEnum novoStatus)
         {
             try
             {
-                var ordemServico = await _osIService.UpdateOrdemServico(User.GetUserId(), id, model);
+                var ordemServico = await _osIService.UpdateMudarStatusOrdemServico(User.GetUserId(), OrdemServicoId, novoStatus);
                 if (ordemServico == null) return NoContent();
 
                 return Ok(ordemServico);
@@ -109,7 +113,6 @@ namespace ProjServiSysApi.Controller
                 return this.StatusCode(StatusCodes.Status500InternalServerError, $"Erro ao tentar alterar ordem. Erro: {ex.Message}");
             }
         }
-
 
         [HttpPatch("Aprovado/{id}")]
         public async Task<ActionResult<OrdemServicoDto>> PatchAprovadoOrdemServico(int id)

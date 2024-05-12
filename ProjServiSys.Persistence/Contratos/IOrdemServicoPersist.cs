@@ -8,8 +8,9 @@ namespace ProjServiSys.Persistence.Contratos
 {
     public interface IOrdemServicoPersist
     {
-        Task<OrdemServico[]> GetAllOrdensServicoAsync(int userId, bool includeOrdemEquipamento);
-        Task<OrdemServico> GetOrdemServicoByIdAsync(int userId, int OrdemServicoId, bool includeOrdemEquipamento);
-        Task<OrdemServico[]> GetAllOrdensServicoByUsuarioAsync(int userId, bool includeOrdemEquipamento);
+        Task<OrdemServico[]> GetAllOrdensServicoAsync();
+        Task<OrdemServico> GetOrdemServicoByIdAsync(int userId, int OrdemServicoId);
+        Task<OrdemServico[]> GetAllOrdensServicoByUsuarioAsync(int userId);
+
     }
 }

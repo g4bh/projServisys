@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nefad\\OneDrive\\Documentos\\prjServiSysApi\\ProjServisysapi\\ProjServiSysApi.csproj": {}
+    "C:\\Users\\nefad\\OneDrive\\Documentos\\prjServiSysApi\\projservisysapi\\ProjServiSysApi.csproj": {}
   },
   "projects": {
     "C:\\Users\\nefad\\OneDrive\\Documentos\\prjServiSysApi\\ProjServiSys.Application\\ProjServiSys.Application.csproj": {
@@ -245,14 +245,14 @@
         }
       }
     },
-    "C:\\Users\\nefad\\OneDrive\\Documentos\\prjServiSysApi\\ProjServisysapi\\ProjServiSysApi.csproj": {
+    "C:\\Users\\nefad\\OneDrive\\Documentos\\prjServiSysApi\\projservisysapi\\ProjServiSysApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nefad\\OneDrive\\Documentos\\prjServiSysApi\\ProjServisysapi\\ProjServiSysApi.csproj",
+        "projectUniqueName": "C:\\Users\\nefad\\OneDrive\\Documentos\\prjServiSysApi\\projservisysapi\\ProjServiSysApi.csproj",
         "projectName": "ProjServiSysApi",
-        "projectPath": "C:\\Users\\nefad\\OneDrive\\Documentos\\prjServiSysApi\\ProjServisysapi\\ProjServiSysApi.csproj",
+        "projectPath": "C:\\Users\\nefad\\OneDrive\\Documentos\\prjServiSysApi\\projservisysapi\\ProjServiSysApi.csproj",
         "packagesPath": "C:\\Users\\nefad\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nefad\\OneDrive\\Documentos\\prjServiSysApi\\ProjServisysapi\\obj\\",
+        "outputPath": "C:\\Users\\nefad\\OneDrive\\Documentos\\prjServiSysApi\\projservisysapi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

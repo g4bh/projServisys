@@ -15,3 +15,4 @@ C:\Users\nefad\OneDrive\Documentos\prjServiSysApi\ProjServiSys.Application\obj\D
 C:\Users\nefad\OneDrive\Documentos\prjServiSysApi\ProjServiSys.Application\obj\Debug\net8.0\refint\ProjServiSys.Application.dll
 C:\Users\nefad\OneDrive\Documentos\prjServiSysApi\ProjServiSys.Application\obj\Debug\net8.0\ProjServiSys.Application.pdb
 C:\Users\nefad\OneDrive\Documentos\prjServiSysApi\ProjServiSys.Application\obj\Debug\net8.0\ref\ProjServiSys.Application.dll
+C:\Users\nefad\OneDrive\Documentos\prjServiSysApi\ProjServiSys.Application\obj\Debug\net8.0\ProjServiSys.Application.sourcelink.json

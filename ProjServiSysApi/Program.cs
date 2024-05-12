@@ -12,6 +12,10 @@ using Microsoft.OpenApi.Models;
 using ProjServiSys.Application.Contratos;
 using ProjServiSys.Persistence.Contratos;
 using System.Text.Json.Serialization;
+using Swashbuckle.AspNetCore.SwaggerGen;
+using Microsoft.OpenApi.Any;
+using System.Text.RegularExpressions;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,10 +51,19 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 });
 
 
+builder.Services.AddAuthorization(options =>{
+    options.AddPolicy("SolicitantePolicy", policy => policy.RequireRole("Solicitante"));
+    options.AddPolicy("CoordenadorTIPolicy", policy => policy.RequireRole("Coordenador_TI"));
+    options.AddPolicy("tecnicoPolicy", policy => policy.RequireRole("Tecnico"));
+    options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Administrador"));
+});
+
+
 builder.Services.AddControllers()
     .AddJsonOptions(options => { options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles; 
         options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()); });
 
+builder.Services.AddCors();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<IOrdemServicoService, OrdemServicoService>();
@@ -98,6 +111,8 @@ builder.Services.AddSwaggerGen( options =>
             new List<string>()
         }
     });
+
+    options.SchemaFilter<EnumSchemaFilter>();
 });
 
 builder.Services.AddDbContext<DbServiSysApiContext>(options =>
@@ -118,6 +133,27 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
 
+app.UseCors(x => x.AllowAnyHeader()
+                 .AllowAnyMethod()
+                 .AllowAnyOrigin());
+
 app.MapControllers();
 
 app.Run();
+
+
+public class EnumSchemaFilter : ISchemaFilter
+{
+    public void Apply(OpenApiSchema schema, SchemaFilterContext context)
+    {
+        if (context.Type.IsEnum)
+        {
+            schema.Type = "string";
+            schema.Enum = Enum.GetNames(context.Type)
+                .Select(name => new OpenApiString(name))
+                .Cast<IOpenApiAny>()
+                .ToList();
+        }
+    }
+
+}

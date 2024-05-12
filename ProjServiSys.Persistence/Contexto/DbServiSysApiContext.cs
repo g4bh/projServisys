@@ -15,17 +15,14 @@ namespace ProjServiSys.Persistence
     {
         public DbServiSysApiContext(DbContextOptions<DbServiSysApiContext> options) : base(options) { }
 
-        public DbSet<Ambiente> Ambientes { get; set; }
-        public DbSet<Equipamento> Equipamentos { get; set; }
         public DbSet<Lancamento> Lancamentos { get; set; }
-        public DbSet<OrdemEquipamento> OrdemEquipamentos { get; set; }
         public DbSet<OrdemServico> OrdensServico { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
             base.OnModelCreating(modelBuilder);
-
+            
             modelBuilder.Entity<UserRole>(userRole =>
             {
                 userRole.HasKey(ur => new {ur.UserId, ur.RoleId});
@@ -42,8 +39,6 @@ namespace ProjServiSys.Persistence
 
             });
 
-            modelBuilder.Entity<OrdemEquipamento>()
-                .HasKey(OE => new { OE.OrdemServicoId, OE.EquipamentoId });
 
         }
     }

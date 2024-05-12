@@ -33,7 +33,7 @@ namespace ProjServiSys.Application
                 _geralPersist.Add<OrdemServico>(ordemServico);
                 if (await _geralPersist.SaveChangesAsync())
                 {
-                    var ordemRetorno = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, ordemServico.Id, false);
+                    var ordemRetorno = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, ordemServico.Id);
                     return _mapper.Map<OrdemServicoDto> (ordemRetorno);
                 }
 
@@ -50,7 +50,7 @@ namespace ProjServiSys.Application
         {
             try
             {
-                var ordemServico = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, osId, false);
+                var ordemServico = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, osId);
                 if (ordemServico == null) return null;
 
                 model.Id = ordemServico.Id;
@@ -61,7 +61,7 @@ namespace ProjServiSys.Application
                 _geralPersist.Update<OrdemServico>(ordemServico);
                 if(await _geralPersist.SaveChangesAsync())
                 {
-                    var ordemRetorno = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, ordemServico.Id, false);
+                    var ordemRetorno = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, ordemServico.Id);
                     return _mapper.Map<OrdemServicoDto>(ordemRetorno);
                 }
 
@@ -73,11 +73,36 @@ namespace ProjServiSys.Application
             }
         }
 
+        public async Task<OrdemServicoDto> UpdateMudarStatusOrdemServico(int userId, int osId, EstadoOrdemServicoEnum novoStatus)
+        {
+            try
+            {
+                var ordemServico = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, osId);
+                if (ordemServico == null) return null;
+
+                ordemServico.EstadoOrdemServico = novoStatus;
+
+                _geralPersist.Update<OrdemServico>(ordemServico);
+                if (await _geralPersist.SaveChangesAsync())
+                {
+                    var ordemRetorno = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, ordemServico.Id);
+                    return _mapper.Map<OrdemServicoDto>(ordemRetorno);
+                }
+
+                return null;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public async Task<OrdemServicoDto> UpdateAprovadoOrdemServico(int userId, int osId)
         {
             try
             {
-                var ordemServico = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, osId, false);
+                var ordemServico = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, osId);
                 if (ordemServico == null) return null;
 
                 ordemServico.EstadoOrdemServico = EstadoOrdemServicoEnum.Aprovada;
@@ -85,7 +110,7 @@ namespace ProjServiSys.Application
                 _geralPersist.Update<OrdemServico>(ordemServico);
                 if (await _geralPersist.SaveChangesAsync())
                 {
-                    var ordemRetorno = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, ordemServico.Id, false);
+                    var ordemRetorno = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, ordemServico.Id);
                     return _mapper.Map<OrdemServicoDto>(ordemRetorno);
                 }
 
@@ -102,7 +127,7 @@ namespace ProjServiSys.Application
         {
             try
             {
-                var ordemServico = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, osId, false);
+                var ordemServico = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, osId);
                 if (ordemServico == null) return null;
 
                 ordemServico.EstadoOrdemServico = EstadoOrdemServicoEnum.NãoAprovada;
@@ -110,7 +135,7 @@ namespace ProjServiSys.Application
                 _geralPersist.Update<OrdemServico>(ordemServico);
                 if (await _geralPersist.SaveChangesAsync())
                 {
-                    var ordemRetorno = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, ordemServico.Id, false);
+                    var ordemRetorno = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, ordemServico.Id);
                     return _mapper.Map<OrdemServicoDto>(ordemRetorno);
                 }
 
@@ -122,13 +147,13 @@ namespace ProjServiSys.Application
                 throw new Exception(ex.Message);
             }
         }
-        
 
-        public async Task<OrdemServicoDto[]> GetAllOrdensServicoAsync(int userId, bool includeOrdemEquipamento = false)
+
+        public async Task<OrdemServicoDto[]> GetAllOrdensServicoAsync()
         {
             try
             {
-                var ordemServico = await _ordemServiscoPersist.GetAllOrdensServicoAsync(userId, includeOrdemEquipamento);
+                var ordemServico = await _ordemServiscoPersist.GetAllOrdensServicoAsync();
                 if (ordemServico == null) return null;
 
                 var result = _mapper.Map<OrdemServicoDto[]>(ordemServico);
@@ -139,11 +164,11 @@ namespace ProjServiSys.Application
         }
 
 
-        public async Task<OrdemServicoDto[]> GetAllOrdensServicoByUsuarioAsync(int userId, bool includeOrdemEquipamento)
+        public async Task<OrdemServicoDto[]> GetAllOrdensServicoByUsuarioAsync(int userId)
         {
             try
             {
-                var ordemServico = await _ordemServiscoPersist.GetAllOrdensServicoByUsuarioAsync(userId, includeOrdemEquipamento);
+                var ordemServico = await _ordemServiscoPersist.GetAllOrdensServicoByUsuarioAsync(userId);
                 if (ordemServico == null) return null;
 
                 var result = _mapper.Map<OrdemServicoDto[]>(ordemServico);
@@ -153,11 +178,11 @@ namespace ProjServiSys.Application
             catch (Exception ex) { throw new Exception(ex.Message); }
         }
 
-        public async Task<OrdemServicoDto> GetOrdemServicoByIdAsync(int userId, int OrdemServicoId, bool includeOrdemEquipamento)
+        public async Task<OrdemServicoDto> GetOrdemServicoByIdAsync(int userId, int OrdemServicoId)
         {
             try
             {
-                var ordemServico = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, OrdemServicoId, includeOrdemEquipamento);
+                var ordemServico = await _ordemServiscoPersist.GetOrdemServicoByIdAsync(userId, OrdemServicoId);
                 if (ordemServico == null) return null;
 
                 var result = _mapper.Map<OrdemServicoDto>(ordemServico);

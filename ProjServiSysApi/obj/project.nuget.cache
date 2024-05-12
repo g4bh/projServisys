@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZhSysnwTygxV24BOBh7QfkIrgfOd840SI1ZDSmvu89umNboRNx8+kmYiG2tONrTlyPhre7ZQ2ICFy2ROQ+WsGA==",
+  "dgSpecHash": "2Ol7sGApu3ifWAM69UnF6n6G0iYKHtmHAU84A26f4rdrrqE8zcE3eoL+jrWLCjT1VplUAX8bKo1XpW3KoYVEIg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\nefad\\OneDrive\\Documentos\\prjServiSysApi\\ProjServisysapi\\ProjServiSysApi.csproj",
+  "projectFilePath": "C:\\Users\\nefad\\OneDrive\\Documentos\\prjServiSysApi\\projservisysapi\\ProjServiSysApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\nefad\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\nefad\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.1\\automapper.extensions.microsoft.dependencyinjection.12.0.1.nupkg.sha512",

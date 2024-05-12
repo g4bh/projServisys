@@ -10,3 +10,4 @@ C:\Users\nefad\OneDrive\Documentos\prjServiSysApi\ProjServiSys.Domain\obj\Debug\
 C:\Users\nefad\OneDrive\Documentos\prjServiSysApi\ProjServiSys.Domain\obj\Debug\net8.0\ProjServiSys.Domain.pdb
 C:\Users\nefad\OneDrive\Documentos\prjServiSysApi\ProjServiSys.Domain\obj\Debug\net8.0\ref\ProjServiSys.Domain.dll
 C:\Users\nefad\OneDrive\Documentos\prjServiSysApi\ProjServiSys.Domain\obj\Debug\net8.0\ProjServiSys.Domain.csproj.AssemblyReference.cache
+C:\Users\nefad\OneDrive\Documentos\prjServiSysApi\ProjServiSys.Domain\obj\Debug\net8.0\ProjServiSys.Domain.sourcelink.json

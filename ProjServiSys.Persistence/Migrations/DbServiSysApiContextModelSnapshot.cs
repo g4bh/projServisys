@@ -205,7 +205,7 @@ namespace ProjServiSys.Persistence.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("DataAlteracaoInatividade")
+                    b.Property<DateTime>("DataCriacaoUser")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
@@ -213,9 +213,6 @@ namespace ProjServiSys.Persistence.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("InativaUsuario")
                         .HasColumnType("bit");
 
                     b.Property<bool>("LockoutEnabled")
@@ -247,6 +244,9 @@ namespace ProjServiSys.Persistence.Migrations
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TipoUsuario")
+                        .HasColumnType("int");
 
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
@@ -349,6 +349,10 @@ namespace ProjServiSys.Persistence.Migrations
                         .IsRequired()
                         .HasMaxLength(1200)
                         .HasColumnType("nvarchar(1200)");
+
+                    b.Property<string>("PosicaoEquipamento")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SerialEquipamento")
                         .IsRequired()
