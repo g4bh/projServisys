@@ -21,6 +21,7 @@ namespace ProjServiSys.Application.Dto
         public string LocalEquipamento { get; set; }
         public string TipoEquipamento { get; set; }
         public string SerialEquipamento { get; set; }
+        public string PosicaoEquipamento { get; set; }
         [JsonIgnore]
         public int UserId { get; set; }
         public EstadoOrdemServicoEnum EstadoOrdemServico { get; set; }

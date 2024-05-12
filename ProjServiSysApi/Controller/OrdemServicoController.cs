@@ -27,6 +27,7 @@ namespace ProjServiSysApi.Controller
 
         //[Authorize(Roles = "Admin")]
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<OrdemServicoDto[]>> GetOrdemServico()
         {
             try
@@ -44,6 +45,7 @@ namespace ProjServiSysApi.Controller
 
        
         [HttpGet("{id}")]
+        [AllowAnonymous]
         public async Task<ActionResult<OrdemServicoDto>> GetOrdemServicoById(int id)
         {
             try
@@ -61,6 +63,7 @@ namespace ProjServiSysApi.Controller
         }
 
         [HttpGet("usuario/{idUsuario}")]
+        [AllowAnonymous]
         public async Task<ActionResult<OrdemServicoDto>> GetOrdemServicoByUsuario()
         {
             try
@@ -79,6 +82,7 @@ namespace ProjServiSysApi.Controller
 
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<ActionResult<OrdemServicoDto>> PostOrdemServico(OrdemServicoDto model)
         {
             try

@@ -14,10 +14,7 @@ namespace ProjServiSys.Application.Helpers
         public ServiSysProfile() 
         {
             CreateMap<OrdemServico, OrdemServicoDto>().ReverseMap();
-            CreateMap<OrdemEquipamento, OrdemEquipamentoDto>().ReverseMap();
             CreateMap<Lancamento, LancamentoDto>().ReverseMap();
-            CreateMap<Equipamento, EquipamentoDto>().ReverseMap();
-            CreateMap<Ambiente, AmbienteDto>().ReverseMap();
             CreateMap<User, UserDto>().ReverseMap();
             CreateMap<User, UserUpdateDto>().ReverseMap();
         }

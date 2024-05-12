@@ -21,8 +21,7 @@ namespace ProjServiSys.Persistence
 
         public async Task<OrdemServico[]> GetAllOrdensServicoAsync()
         {
-            IQueryable<OrdemServico> query = _context.OrdensServico.AsNoTracking()
-                .Include(os => os.Lancamentos);
+            IQueryable<OrdemServico> query = _context.OrdensServico.AsNoTracking();
 
             query = query.OrderByDescending(os => os.DataOrdemServico);
 
@@ -40,8 +39,7 @@ namespace ProjServiSys.Persistence
 
         public async Task<OrdemServico> GetOrdemServicoByIdAsync(int userId, int OrdemServicoId)
         {
-            IQueryable<OrdemServico> query = _context.OrdensServico.AsNoTracking()
-                .Include(os => os.Lancamentos);
+            IQueryable<OrdemServico> query = _context.OrdensServico.AsNoTracking();
 
             query = query.Where(os => os.Id == OrdemServicoId && os.UserId == userId);
 
